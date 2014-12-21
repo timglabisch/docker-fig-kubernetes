@@ -97,5 +97,3 @@ else
 	fi
 	exec bash
 fi
-
-docker -d
