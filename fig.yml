@@ -1,0 +1,29 @@
+etcd:
+  image: graemej/k8s-etcd
+  ports:
+    - 4001
+    - 7001
+  expose:
+    - 4001
+    - 7001
+
+kubernetesMaster:
+  build: kubernetes-master/
+  privileged: true
+  links:
+    - etcd
+  expose:
+    - 18080
+  environment:
+    KUBERNETES_LOGLEVEL: 1
+
+kubernetesMinion:
+  build: kubernetes-minion/
+  privileged: true
+  links:
+    - etcd
+    - kubernetesMaster
+  environment:
+    KUBERNETES_LOGLEVEL: 1
+
+
