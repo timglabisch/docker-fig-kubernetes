@@ -11,12 +11,12 @@ RUN cd /opt/kubernetes && ./hack/build-go.sh
 
 RUN apt-get install -y supervisor curl
 
-RUN echo 1
+RUN echo 2
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ADD start.sh /start.sh
 
-EXPOSE 18080
+EXPOSE 8080
 
 ENTRYPOINT ["/start.sh"]

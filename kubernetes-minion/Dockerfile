@@ -1,7 +1,8 @@
 FROM ubuntu:14.04
 
 RUN apt-get update
-RUN apt-get install -y build-essential golang git make docker.io vim htop
+RUN apt-get install -y build-essential golang git make vim htop curl  && \
+    curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 
 RUN mkdir -p /opt/kubernetes && \
     cd /opt/kubernetes &&  \
@@ -11,7 +12,7 @@ RUN cd /opt/kubernetes && ./hack/build-go.sh
 
 RUN apt-get install -y supervisor apparmor
 
-RUN echo 5
+RUN echo 1
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 

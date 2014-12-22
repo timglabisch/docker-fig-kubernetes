@@ -23,9 +23,9 @@ kubernetesMaster:
   links:
     - etcd
   expose:
-    - 18080
+    - 8080
   ports:
-    - 18080
+    - 8080
   environment:
     KUBERNETES_LOGLEVEL: 4
 
