@@ -11,7 +11,7 @@ RUN cd /opt/kubernetes && ./hack/build-go.sh
 
 RUN apt-get install -y supervisor apparmor
 
-RUN echo 4
+RUN echo 5
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
