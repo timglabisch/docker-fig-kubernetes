@@ -17,6 +17,16 @@ kubernetesControllerManager:
   environment:
     KUBERNETES_LOGLEVEL: 4
 
+docker:
+  image: jpetazzo/dind
+  privileged: true
+  environment:
+    PORT: 4444
+  ports:
+    - 4444
+  expose:
+    - 4444
+
 kubernetesMaster:
   build: kubernetes-master/
   privileged: true
@@ -39,6 +49,7 @@ kubernetesMinion:
     - 12345
     - 10250
   links:
+    - docker
     - etcd
     - kubernetesMaster
   environment:
