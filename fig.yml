@@ -22,8 +22,9 @@ kubernetesMaster:
   privileged: true
   links:
     - etcd
-    - kubernetesMinion
   expose:
+    - 18080
+  ports:
     - 18080
   environment:
     KUBERNETES_LOGLEVEL: 4
@@ -39,6 +40,7 @@ kubernetesMinion:
     - 10250
   links:
     - etcd
+    - kubernetesMaster
   environment:
     KUBERNETES_LOGLEVEL: 4
 
