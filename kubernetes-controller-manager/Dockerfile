@@ -11,7 +11,7 @@ RUN cd /opt/kubernetes && ./hack/build-go.sh
 
 RUN apt-get install -y supervisor curl
 
-RUN echo 6
+RUN echo 1
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
