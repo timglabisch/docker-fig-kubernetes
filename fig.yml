@@ -7,23 +7,39 @@ etcd:
     - 4001
     - 7001
 
+kubernetesControllerManager:
+  build: kubernetes-controller-manager/
+  privileged: true
+  links:
+    - kubernetesMinion
+    - kubernetesMaster
+    - etcd
+  environment:
+    KUBERNETES_LOGLEVEL: 4
+
 kubernetesMaster:
   build: kubernetes-master/
   privileged: true
   links:
     - etcd
+    - kubernetesMinion
   expose:
     - 18080
   environment:
-    KUBERNETES_LOGLEVEL: 1
+    KUBERNETES_LOGLEVEL: 4
 
 kubernetesMinion:
   build: kubernetes-minion/
   privileged: true
+  expose:
+    - 12345
+    - 10250
+  ports:
+    - 12345
+    - 10250
   links:
     - etcd
-    - kubernetesMaster
   environment:
-    KUBERNETES_LOGLEVEL: 1
+    KUBERNETES_LOGLEVEL: 4
 
 

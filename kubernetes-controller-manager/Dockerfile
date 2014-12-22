@@ -11,12 +11,10 @@ RUN cd /opt/kubernetes && ./hack/build-go.sh
 
 RUN apt-get install -y supervisor curl
 
-
-RUN echo 9
+RUN echo 6
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-ADD wrapdocker.sh /wrapdocker.sh
 ADD start.sh /start.sh
 
 EXPOSE 18080
